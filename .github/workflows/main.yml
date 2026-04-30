@@ -7,14 +7,14 @@ on:
     types: [trigger-workflow]
   schedule:
     - cron: '0 0 * * *'  # 매일 UTC 00:00 (한국 시간 오전 9:00)에 실행
-    
+
 jobs:
- dispatch:
-   runs-on: ubuntu-latest
-   steps:
-     - name: Trigger repository dispatch
-       uses: peter-evans/repository-dispatch@v1
-       with:
-         token: ${{ secrets.GH_PAT }}
-         repository: leeyun/programmers-badge-v1
-         event-type: trigger-workflow
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger repository dispatch
+        uses: peter-evans/repository-dispatch@v3  # <-- v1을 v3로 변경했습니다.
+        with:
+          token: ${{ secrets.GH_PAT }}
+          repository: leeyun/programmers-badge-v1
+          event-type: trigger-workflow
